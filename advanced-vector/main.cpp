@@ -1,9 +1,9 @@
-#include "vector.h"
-
 #include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+#include "vector.h"
 
 namespace {
 
@@ -404,7 +404,7 @@ void Test5() {
 }
 
 void Test6() {
-    
+
     using namespace std::literals;
     const size_t SIZE = 10;
     const int ID = 42;
@@ -422,7 +422,7 @@ void Test6() {
         assert(v.cbegin() == cv.begin());
         assert(v.cend() == cv.end());
     }
-    
+
     {
         Obj::ResetCounters();
         Vector<Obj> v{ SIZE };
@@ -436,7 +436,7 @@ void Test6() {
         assert(Obj::num_default_constructed == SIZE);
         assert(Obj::GetAliveObjectCount() == SIZE + 2);
     }
-    
+
     {
         Obj::ResetCounters();
         Vector<Obj> v;
@@ -451,7 +451,7 @@ void Test6() {
         assert(Obj::num_move_assigned == 0);
         assert(Obj::GetAliveObjectCount() == 1);
     }
-    
+
     {
         Obj::ResetCounters();
         Vector<Obj> v;
@@ -467,7 +467,7 @@ void Test6() {
         assert(Obj::num_move_assigned == 0);
         assert(Obj::GetAliveObjectCount() == 1);
     }
-    
+
     {
         Obj::ResetCounters();
         Vector<Obj> v{ SIZE };
@@ -480,7 +480,7 @@ void Test6() {
         assert(Obj::num_default_constructed == SIZE);
         assert(Obj::GetAliveObjectCount() == SIZE + 1);
     }
-    
+
     {
         Vector<TestObj> v{ SIZE };
         v.Insert(v.cbegin() + 2, v[0]);
@@ -488,7 +488,7 @@ void Test6() {
             return obj.IsAlive();
             }));
     }
-    
+
     {
         Vector<TestObj> v{ SIZE };
         v.Insert(v.cbegin() + 2, std::move(v[0]));
@@ -503,7 +503,7 @@ void Test6() {
             return obj.IsAlive();
             }));
     }
-    
+
     {
         Obj::ResetCounters();
         Vector<Obj> v{ SIZE };
@@ -520,7 +520,7 @@ void Test6() {
         assert(Obj::num_assigned == 0);
         assert(Obj::GetAliveObjectCount() == SIZE + 1);
     }
-    
+
     {
         Obj::ResetCounters();
         Vector<Obj> v{ SIZE };
@@ -537,7 +537,7 @@ void Test6() {
         assert(Obj::num_assigned == 0);
         assert(Obj::GetAliveObjectCount() == SIZE + 1);
     }
-    
+
     {
         Obj::ResetCounters();
         Vector<Obj> v{ SIZE };
@@ -549,15 +549,15 @@ void Test6() {
         assert(v.Size() == SIZE + 1);
         assert(&*pos == &v[3]);
         assert(v[3].id == ID);
-        assert(v[3].name == "Ivan");                  
-        assert(Obj::num_copied == 0);       
+        assert(v[3].name == "Ivan");
+        assert(Obj::num_copied == 0);
         assert(Obj::num_default_constructed == SIZE);
         assert(Obj::num_constructed_with_id_and_name == 1);
-        assert(Obj::num_moved == old_num_moved + 1);  
-        assert(Obj::num_move_assigned == SIZE - 3);     
-        assert(Obj::num_assigned == 0);               
+        assert(Obj::num_moved == old_num_moved + 1);
+        assert(Obj::num_move_assigned == SIZE - 3);
+        assert(Obj::num_assigned == 0);
     }
-    
+
     {
         Obj::ResetCounters();
         Vector<Obj> v{ SIZE };
@@ -573,7 +573,7 @@ void Test6() {
         assert(Obj::num_moved == 0);
         assert(Obj::GetAliveObjectCount() == SIZE - 1);
     }
-    
+
 }
 
 struct C {
