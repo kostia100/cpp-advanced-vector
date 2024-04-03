@@ -1,2 +1,3 @@
 # cpp-advanced-vector
-Финальный проект: улучшенный контейнер вектор
+Project: implementation of the vector class.
+
